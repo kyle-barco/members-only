@@ -1,0 +1,16 @@
+extends ../partials/layout
+
+block content
+  main.homepage
+    if(!user)
+      .notif
+        p Login first to create your post!
+          a(href="/login") login first.
+    else if(user.member_status === "registered")
+      .notif
+        p to see usernames you need to
+          a.join-membership(href="#") join our nembership first
+
+    .posts
+      each post in posts
+        include ../partials/post.pug

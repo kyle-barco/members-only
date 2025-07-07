@@ -1,0 +1,24 @@
+- 
+  const isMember = !user ? false : user.member_status === "registered" ? false : true;
+
+  const fullName = isMember ? post.fullname : "*******"
+  const username = isMember ? post.username : "*******"
+
+.post
+  .header.flex
+    .user-info.flex
+      img(src="https://freesvg.org/img/abstract-user-flat-4.png", alt="user icon")
+      div
+        p.user-fullname=fullname
+        .user-date
+          span=`@${username}`
+          | • 
+          span=post.date
+
+    if user && user.member_status == "admin"
+      button.delete-post(
+        data-post-id=post.id
+      ) Delete
+  h3.title=post.title
+    .content
+      p=post.content

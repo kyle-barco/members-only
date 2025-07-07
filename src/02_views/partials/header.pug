@@ -1,0 +1,10 @@
+header.flex
+  a.logo.flex(href="/")
+    img(src="", alt="logo")
+    h1 Members Only
+  .nav.flex
+    if user
+      .user-nav.flex(role="button")
+        img(src="https://freesvg.org/img/abstract-user-flat-4.png", alt="user icon")
+        span=user.username
+
