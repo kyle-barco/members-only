@@ -9,10 +9,10 @@ const queries = {
         u.username,
         m.title,
         m.message_text,
-        m.date
+        m.created_at
       FROM messages AS m
       LEFT JOIN users AS u ON u.id = m.id
-      ORDER BY m.date DESC;
+      ORDER BY m.created_at DESC;
         
     `)
     return rows
