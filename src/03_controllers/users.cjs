@@ -7,13 +7,34 @@ const db = require("../01_models/queries.cjs")
 const userController = {
   signup: {
     get: (req, res) => {
-      res.render("pages/auth", {route: "login"})
+      res.render("pages/auth", {route: "signup"})
     },
     post: async (req, res, next) => {
       try {
         const errors = validationResult(req)
+        
+        if(!errors.isEmpty()){
+          res.render("pages/auth", {
+            route: "signup",
+            errors: errors.array()
+          })
+        } else {
+          const {full_name, username, password} = req.body
+          const hashPw = await bcrypt.hash(password, 10)
 
+          await db.createUser(full_name, username, hashPw)
+
+          res.render("pages/auth", {
+            route: "signup",
+            success: true
+          })
+        }
+      } catch (err) {
+        next(err)
       } 
     }
   }
 }
+
+module.exports = userController
+

@@ -1,5 +1,9 @@
 extends ../partials/layout.pug
 
+block scripts
+    if route === "signup"
+        script(src="../../../public/scripts/register.js" defer)
+
 block content 
   main.auth
     if route == "login"
