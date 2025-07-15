@@ -4,8 +4,8 @@ const routes = require("./src/routes/index.cjs")
 
 const app = express()
 
-app.use(express.static("public"))
 app.use(express.json())
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({extended: true}))
 
 app.set("view engine", "pug")

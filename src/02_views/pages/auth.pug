@@ -1,4 +1,4 @@
-extends ../partials/layout.pug
+extends ../partials/layout
 
 block scripts
     if route === "signup"
@@ -38,45 +38,46 @@ block content
         if errors
           include ../partials/validation-errors.pug
         h2.form-title Register a new account
-          .default-input.fullname-input
-              label(for="full_name") Fullname
-              input(
-                  id="full_name"
-                  name="full_name"
-                  type="text"
-                  minlength="5"
-                  maxlength="50"
-                  required
-              )
-          .default-input.username-input
-              label(for="username") Username
-              input(
-                  id="username"
-                  name="username"
-                  type="text"
-                  minlength="5"
-                  maxlength="50"
-                  required
-              )
-          .default-input.password-input
-              label(for="password") Password
-              input(
-                  id="password"
-                  name="password"
-                  type="password"
-                  minlength="5"
-                  maxlength="50"
-                  required
-              )
-          .default-input.confirm-input
-              label(for="conf-password") Confirm password
-              input(
-                  id="conf-password"
-                  name="conf-password"
-                  type="password"
-                  minlength="5"
-                  maxlength="50"
-                  required
-              )
-          button.violet-button.login(type="submit") Register
+        .default-input.fullname-input
+          label(for="full_name") Fullname
+          input(
+              id="full_name"
+              name="full_name"
+              type="text"
+              minlength="5"
+              maxlength="50"
+              required
+          )
+        .default-input.username-input
+          label(for="username") Username
+          input(
+              id="username"
+              name="username"
+              type="text"
+              minlength="5"
+              maxlength="50"
+              required
+          )
+        .default-input.password-input
+          label(for="password") Password
+          input(
+              id="password"
+              name="password"
+              type="password"
+              minlength="5"
+              maxlength="50"
+              required
+          )
+        .default-input.confirm-input
+          label(for="conf-password") Confirm password
+          input(
+              id="conf-password"
+              name="conf-password"
+              type="password"
+              minlength="5"
+              maxlength="50"
+              required
+          )
+          p.confirm-error Passwords do not match. Please try again. 
+        button.violet-button.login(type="submit") Register
 

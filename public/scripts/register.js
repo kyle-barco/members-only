@@ -1,11 +1,11 @@
 const signupForm = document.querySelector("form.form")
-const pwConf = document.getElementById("password")
+const pwConf = document.getElementById("conf-password")
 const pw = document.getElementById("password")
 const pwError = document.querySelector(".confirm-error")
 let isError = false;
 
 const showPasswordSimilarity = () => {
-  if(pwConf.value !== pw) {
+  if(pwConf.value !== pw.value) {
     pwError.classList.add("active")
     isError = true
   } else {
