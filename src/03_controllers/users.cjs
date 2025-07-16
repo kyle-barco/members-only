@@ -19,10 +19,10 @@ const userController = {
             errors: errors.array()
           })
         } else {
-          const {full_name, username, password} = req.body
+          const {fullname, username, password} = req.body
           const hashPw = await bcrypt.hash(password, 10)
 
-          await db.createUser(full_name, username, hashPw)
+          await db.createUser(fullname, username, hashPw)
 
           res.render("pages/auth", {
             route: "signup",

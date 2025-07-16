@@ -1,5 +1,5 @@
 - 
-  const isMember = !user ? false : user.member_status === "registered" ? false : true;
+  const isMember = !user ? false : user.is_member === "registered" ? false : true;
 
   const fullName = isMember ? post.fullname : "*******"
   const username = isMember ? post.username : "*******"
@@ -15,7 +15,7 @@
           | • 
           span=post.date
 
-    if user && user.member_status == "admin"
+    if user && user.is_member == "admin"
       button.delete-post(
         data-post-id=post.id
       ) Delete
