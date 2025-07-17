@@ -1,12 +1,12 @@
 extends ../partials/layout
 
 block scripts
-    if route === "signup"
-        script(src="../../../public/scripts/register.js" defer)
+  if route === "signup"
+      script(src="../../../public/scripts/register.js" defer)
 
 block content 
   main.auth
-    if route == "login"
+    if route === "login"
       form.form(method="POST")
         h2.form-title Welcome back
         .default-input.username-input

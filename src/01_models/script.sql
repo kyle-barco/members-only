@@ -9,7 +9,7 @@ CREATE TABLE users (
   fullname VARCHAR(255) NOT NULL,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  is_member BOOLEAN NOT NULL DEFAULT FALSE
+  is_member VARCHAR DEFAULT 'registered'
 );
 
 -- table for messages

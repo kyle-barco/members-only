@@ -10,11 +10,12 @@ const {signupValidation, postValidation} = require("../middlewares/validation.cj
 
 // POST ROUTES
 router.post("/signup", signupValidation, user.signup.post)
-router.post("")
+router.post("/login", user.login.post)
 
 
 // // GET ROUTES
 router.get("/", index.home)
 router.get("/signup", user.signup.get)
+router.get("/login", user.login.get)
 
 module.exports = router

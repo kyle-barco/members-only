@@ -26,6 +26,13 @@ const queries = {
         ($1, $2, $3, 'registered');
     `, [fullname, username, password])
 
+  },
+
+  getUserFromUname: async(username) => {
+    const { rows } = await connection.query(
+      "SELECT * FROM users WHERE username = $1",
+      [username]
+    )
   }
 }
 
