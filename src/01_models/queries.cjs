@@ -33,7 +33,15 @@ const queries = {
       "SELECT * FROM users WHERE username = $1",
       [username]
     )
-  }
+  },
+
+  getUserFromId: async(id) => {
+      const { rows } = await connection.query(
+        "SELECT * FROM users WHERE id = $1",
+        [id]
+      )
+    }
+
 }
 
 module.exports = queries
