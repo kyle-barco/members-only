@@ -3,7 +3,7 @@ const pool = require('../01_models/pool.cjs')
 const pgConnect = require("connect-pg-simple")
 const pgStore = pgConnect(sessions)
 
-module.exports = () => {
+module.exports = () => 
   sessions({
     secret: "cats",
     resave: false, 
@@ -13,4 +13,3 @@ module.exports = () => {
       maxAge: 1000 * 60 * 60 * 24 * 30,
     }
   })
-}

@@ -1,4 +1,5 @@
 const express = require('express')
+const createError = require('http-errors')
 const path = require('path')
 const routes = require("./src/routes/index.cjs")
 const passport = require("passport")
@@ -19,15 +20,19 @@ app.use(sessionConfig())
 app.use(passport.session())
 
 app.use((req, res, next) =>{
-  console.log(req.user)
+  // console.log(req)
   next()
 })
 
 require('./src/configs/passport.cjs')
 
 // ROUTES
-console.log('type of: ' + typeof routes)
 app.use(routes)
+
+// ERRORS
+app.use((req, res, next) => {
+  next(createError(404))
+})
 
 // SERVER
 app.listen(3000, () => console.log("Server running at port 3000"))

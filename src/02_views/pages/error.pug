@@ -1,0 +1,12 @@
+extends ../partials/layout.pug
+
+block content
+  main.error
+    h2 Uh Oh!
+    h3=`${error.statusCode} ${message}`
+
+    if typeof error === "string"
+      h3= error
+    else 
+      p If you're the dev, check out the server logs!
+      - 
