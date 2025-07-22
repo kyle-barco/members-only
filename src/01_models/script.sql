@@ -25,3 +25,12 @@ CREATE TABLE msg_creator (
   id SERIAL PRIMARY KEY,
   username_id INT REFERENCES users(id) 
 );
+
+-- insert test users
+INSERT INTO users (fullname, username, password) VALUES
+  ('jazkyle', 'kyle22', '12345');
+
+-- insert test values messages
+INSERT INTO messages (title, message_text) VALUES
+  ('Test message/post', 'hello new self, you can do it, Lord God is with us now! never give up!');
+

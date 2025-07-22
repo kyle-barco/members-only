@@ -4,6 +4,7 @@ const path = require('path')
 const routes = require("./src/routes/index.cjs")
 const passport = require("passport")
 const sessionConfig = require("./src/configs/sessions.cjs")
+const errorHandler = require("./src/middlewares/errors.cjs").errorHandler
 
 
 const app = express()
@@ -17,6 +18,7 @@ app.set("views", path.join(__dirname, "src/02_views"));
 
 // AUTH/SESSIONS
 app.use(sessionConfig())
+app.use(passport.initialize())
 app.use(passport.session())
 
 app.use((req, res, next) =>{
@@ -33,6 +35,8 @@ app.use(routes)
 app.use((req, res, next) => {
   next(createError(404))
 })
+
+app.use(errorHandler)
 
 // SERVER
 app.listen(3000, () => console.log("Server running at port 3000"))

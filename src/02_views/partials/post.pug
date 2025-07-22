@@ -13,7 +13,7 @@
         .user-date
           span=`@${username}`
           | • 
-          span=post.date
+          span=post.created_at
 
     if user && user.is_member == "admin"
       button.delete-post(
@@ -21,4 +21,4 @@
       ) Delete
   h3.title=post.title
     .content
-      p=post.content
+      p=post.message_text

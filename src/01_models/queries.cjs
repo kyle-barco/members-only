@@ -33,6 +33,7 @@ const queries = {
       "SELECT * FROM users WHERE username = $1",
       [username]
     )
+    return rows[0]
   },
 
   getUserFromId: async(id) => {
@@ -40,6 +41,7 @@ const queries = {
         "SELECT * FROM users WHERE id = $1",
         [id]
       )
+    return rows[0]
     }
 
 }
