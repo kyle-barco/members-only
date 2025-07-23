@@ -15,7 +15,7 @@ router.post("/login", user.login.post)
 
 // // GET ROUTES
 router.get("/", index.home)
-router.get("/signup", user.signup.get)
 router.get("/login", user.login.get)
+router.get("/signup", user.signup.get)
 
 module.exports = router

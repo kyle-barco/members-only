@@ -4,6 +4,8 @@ const db = require("../01_models/queries.cjs")
 const bcrypt = require("bcryptjs")
 
 const verifyCallback = async(username, password, done) => {
+  // console.log("Passport verifying:", username)
+  // console.log("Passport password:", password)
   try {
     const user = await db.getUserFromUname(username) 
     if(!user) {
@@ -25,10 +27,12 @@ const verifyCallback = async(username, password, done) => {
 passport.use(new LocalStrategy(verifyCallback))
 
 passport.serializeUser((user, done) => {
+  console.log("Serializing user ID:", user.id)
   done(null, user.id)
 })
 
 passport.deserializeUser(async (id, done) => {
+  console.log("Deserializing user ID:", id)
   try {
     const user = await db.getUserFromId(id)
     done(null, user)

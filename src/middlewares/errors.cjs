@@ -1,6 +1,6 @@
 const errorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500
-  console.log("Error catched by error handler: ", err)
+  // console.log("Error catched by error handler: ", err)
 
   res.locals.message = 
     statusCode === 404

@@ -1,14 +1,17 @@
-const sessions = require("express-session")
+const session = require("express-session")
 const pool = require('../01_models/pool.cjs')
 const pgConnect = require("connect-pg-simple")
-const pgStore = pgConnect(sessions)
+const PgStore = pgConnect(session)
 
 module.exports = () => 
-  sessions({
+  session({
     secret: "cats",
     resave: false, 
     saveUninitialized: false,
-    store: new pgStore({pool: pool, createTableIfMissing: true}),
+    store: new PgStore({
+      pool: pool, 
+      createTableIfMissing: true,
+    }),
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 30,
     }
