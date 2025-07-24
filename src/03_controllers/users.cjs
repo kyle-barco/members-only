@@ -6,6 +6,16 @@ const passport = require("passport")
 
 
 const userController = {
+  join: async (req, res, next) => {
+    try {
+      await db.giveUserMembership(req.user.id)
+      res.redirect("/")
+    } catch (err) {
+      next(err)
+    }
+    
+  },
+
   login: {
     get: (req, res) => {
       res.render("pages/auth", {route: "login"})
@@ -45,6 +55,13 @@ const userController = {
         next(err)
       } 
     }
+  },
+
+  logout: (req, res, next) => {
+    req.logout(err => {
+      if(err) return next(err)
+      res.redirect("/")
+    })
   }
 }
 

@@ -3,28 +3,29 @@ const LocalStrategy = require("passport-local").Strategy
 const db = require("../01_models/queries.cjs")
 const bcrypt = require("bcryptjs")
 
-const verifyCallback = async(username, password, done) => {
-  // console.log("Passport verifying:", username)
-  // console.log("Passport password:", password)
+const verifyCallback = async (username, password, done) => {
   try {
-    const user = await db.getUserFromUname(username) 
-    if(!user) {
-      return done(null, false, {message: "Username not found!"})
-    }
-
-    const match = await bcrypt.compare(password, user.password)
-    if(!match) {
-      return done(null, false, {message: "Incorrect password"})
-    }
-
-    return done(null, user)
-
+    console.log(`Auth attempt: ${username}`); // Debug log
+    const user = await db.getUserFromUname(username);
+    if (!user) return done(null, false, { message: "User not found" });
+    
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return done(null, false, { message: "Incorrect password" });
+    
+    return done(null, user);
   } catch (err) {
-    return done(err)
+    console.error('Auth error:', err); // Critical error logging
+    return done(err);
   }
-}
+};
 
-passport.use(new LocalStrategy(verifyCallback))
+passport.use(new LocalStrategy(
+  {
+    usernameField: 'username', // explicitly set field names
+    passwordField: 'password'
+  },
+  verifyCallback
+))
 
 passport.serializeUser((user, done) => {
   console.log("Serializing user ID:", user.id)

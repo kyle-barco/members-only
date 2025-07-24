@@ -1,9 +1,8 @@
+const pg = require("pg")
 require("dotenv").config()
 
-const {Pool} = require("pg")
-
-module.exports = new Pool({
+module.exports = new pg.Pool({
   connectionString: process.env.DB_STRING,
   // ssl: {rejectUnauthorized: false}
-  ssl: false
+  // ssl: false
 })

@@ -28,6 +28,16 @@ const queries = {
 
   },
 
+  createPost: async (title, content, id) => {
+    await connection.query(`
+      INSERT INTO messages (title, content, id) 
+      VALUES ($1, $2, $3)
+    `,[title, content, id])
+  },
+
+
+
+  // USER QUERIES
   getUserFromUname: async(username) => {
     const { rows } = await connection.query(
       "SELECT * FROM users WHERE username = $1",
@@ -42,7 +52,15 @@ const queries = {
         [id]
       )
     return rows[0]
-    }
+    },
+
+  giveUserMembership: async(id) => {
+    await connection.query(`
+      UPDATE users
+      SET member_status = 'member'
+      WHERE id = $1
+    `, [id])
+  },
 
 }
 
