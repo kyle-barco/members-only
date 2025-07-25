@@ -35,6 +35,12 @@ const queries = {
     `,[title, content, id])
   },
 
+  deletePost: async(id) => {
+    await connection.query(`
+      DELETE FROM messages 
+
+    `)
+  },
 
 
   // USER QUERIES
@@ -44,6 +50,10 @@ const queries = {
       [username]
     )
     return rows[0]
+  },
+  
+  getAllUsers: async() => {
+    
   },
 
   getUserFromId: async(id) => {

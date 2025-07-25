@@ -1,0 +1,29 @@
+extends ../partials/layout.pug
+
+block content
+  main.new-post
+    form.form(method="POST")
+      if errors
+        include ../partials/validation-errors.pug
+      .default-input
+        label Title 
+        input(
+          type="text"
+          minlength="5"
+          maxlength="50"
+          required
+          name="title"
+          id="title"
+        )
+      .default-input
+        label Message
+        textarea(
+          id="content"
+          minlength="10"
+          maxlength="500"
+          rows="10"
+          cols="55"
+          name="message"
+          required
+        ) 
+      button.new-post.violet-button(type="submit") Submit

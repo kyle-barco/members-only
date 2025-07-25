@@ -24,7 +24,15 @@ const indexController = {
       // console.error(err)
       next(err)
     }
-  } 
+  },
+
+  members: async(req, res, next) => {
+    try{
+      const users = await db.getAllUsers()
+    } catch (err){
+
+    }
+  }
 }
 
 module.exports = indexController;

@@ -3,6 +3,11 @@ const db = require("../01_models/queries.cjs")
 
 const postsController = {
   delete: async (req, res, next) => {
+    try {
+      // await db.
+    } catch (err) {
+      next(err)
+    }
   },
 
   create: {
