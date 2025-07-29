@@ -19,7 +19,7 @@ const indexController = {
         res.locals.posts = posts
       }
 
-      res.render('pages/home')
+      res.render("pages/home")
     } catch (err) {
       // console.error(err)
       next(err)
@@ -29,8 +29,10 @@ const indexController = {
   members: async(req, res, next) => {
     try{
       const users = await db.getAllUsers()
+      res.render("pages/members", {users: users})
     } catch (err){
-
+      console.error(err)
+      next(err)
     }
   }
 }

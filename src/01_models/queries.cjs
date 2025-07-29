@@ -53,7 +53,22 @@ const queries = {
   },
   
   getAllUsers: async() => {
-    
+    const { rows } = await connection.query(`
+      SELECT 
+        users.id,
+        users.fullname,
+        users.is_member,
+        COUNT(messages.id) AS messages_count
+      FROM
+        users
+      LEFT JOIN
+        messages ON users.id = messages.id
+      GROUP BY
+        user.id, users.fullname, users.username, users.is_member
+      ORDER BY 
+        users.id
+    `)
+    return rows;
   },
 
   getUserFromId: async(id) => {

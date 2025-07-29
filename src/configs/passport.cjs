@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs")
 
 const verifyCallback = async (username, password, done) => {
   try {
-    console.log(`Auth attempt: ${username}`); // Debug log
+    // console.log(`Auth attempt: ${username}`); // Debug log
     const user = await db.getUserFromUname(username);
     if (!user) return done(null, false, { message: "User not found" });
     
@@ -14,21 +14,21 @@ const verifyCallback = async (username, password, done) => {
     
     return done(null, user);
   } catch (err) {
-    console.error('Auth error:', err); // Critical error logging
+    // console.error('Auth error:', err); // Critical error logging
     return done(err);
   }
 };
 
 passport.use(new LocalStrategy(
-  {
-    usernameField: 'username', // explicitly set field names
-    passwordField: 'password'
-  },
+  // {
+  //   usernameField: 'username', // explicitly set field names
+  //   passwordField: 'password'
+  // },
   verifyCallback
 ))
 
 passport.serializeUser((user, done) => {
-  console.log("Serializing user ID:", user.id)
+  // console.log("Serializing user ID:", user.id)
   done(null, user.id)
 })
 

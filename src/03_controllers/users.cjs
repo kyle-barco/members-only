@@ -4,7 +4,6 @@ const db = require("../01_models/queries.cjs")
 const passport = require("passport")
 
 
-
 const userController = {
   join: async (req, res, next) => {
     try {
@@ -20,11 +19,27 @@ const userController = {
     get: (req, res) => {
       res.render("pages/auth", {route: "login"})
     },
+    post: (req, res, next) => {
+      passport.authenticate("local", (err, user, info) => {
+        if (err) return next(err);
+        if (!user) {
+          return res.render("pages/auth", {
+            route: "login",
+            errors: [{ msg: info?.message || "Invalid credentials" }]
+          });
+        }
 
-    post: passport.authenticate("local", {
-      successRedirect: "/",
-      failureRedirect: "/login"
-    })
+    // This is where the session is created properly
+    req.login(user, (err) => {
+      if (err) return next(err);
+      return res.redirect("/");
+    });
+  })(req, res, next);
+}
+    // post: passport.authenticate("local", {
+    //   successRedirect: "/",
+    //   failureRedirect: "/login"
+    // })
   },
 
   signup: {
