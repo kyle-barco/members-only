@@ -1,10 +1,20 @@
 header.flex
   a.logo.flex(href="/")
-    img(src="", alt="logo")
+    //- img(src="/images/logo.png", alt="logo") // Add logo path
     h1 Members Only
+
   .nav.flex
     if user
       .user-nav.flex(role="button")
         img(src="https://freesvg.org/img/abstract-user-flat-4.png", alt="user icon")
-        span=user.username
-
+        span= user.username
+        i.fa-solid.fa-chevron-down
+        ul.drop-down
+          li
+            a(href="/new-post") New post
+          li.separation
+            hr
+          li
+            a(href="/members") All users
+          li.logout
+            a(href="/logout") Logout
