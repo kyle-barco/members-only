@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS test CASCADE;
+-- DROP TABLE IF EXISTS test CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS messages CASCADE;
 DROP TABLE IF EXISTS msg_creator CASCADE;
@@ -9,8 +9,7 @@ CREATE TABLE users (
   fullname VARCHAR(255) NOT NULL,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  member_status VARCHAR(20) NOT NULL,
-  is_member VARCHAR DEFAULT 'registered'
+  member_status VARCHAR DEFAULT 'registered'
 );
 
 -- table for messages

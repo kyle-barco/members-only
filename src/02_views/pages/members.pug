@@ -15,8 +15,8 @@ block content
         tbody
           if users
             each user in users
-              - const isMember = users.is_member !== "registered"
-              - const isAdmin = users.is_member !== "admin"
+              - const isMember = users.member_status !== "registered"
+              - const isAdmin = users.member_status !== "admin"
               tr
                 td (
                   class=(user)

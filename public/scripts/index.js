@@ -7,7 +7,7 @@ const membershipLink = document.querySelector("a.join-membership")
 if (userDropdown && userNav) {
   document.body.addEventListener("click", (e) => {
     if(userDropdown.classList.contains("active") && !userDropdown.contains(e.target)){
-      console.log("active remove")
+      // console.log("active remove")
       userDropdown.classList.remove("active")
     }
   })

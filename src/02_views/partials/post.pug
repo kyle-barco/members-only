@@ -1,8 +1,10 @@
 - 
-  const isMember = !user ? false : user.is_member === "registered" ? false : true;
+  const isMember = !user ? 
+    false : user.member_status === "registered" ?
+    false : true;
 
-  const fullName = isMember ? post.fullname : "*******"
-  const username = isMember ? post.username : "*******"
+  const fullname = isMember ? post.fullname : "*****"
+  const username = isMember ? post.username : "*****"
 
 .post
   .header.flex
@@ -15,10 +17,10 @@
           | • 
           span=post.created_at
 
-    if user && user.is_member == "admin"
+    if user && user.member_status == "admin"
       button.delete-post(
         data-post-id=post.id
       ) Delete
   h3.title=post.title
-    .content
-      p=post.message_text
+  .content
+    p=post.message_text

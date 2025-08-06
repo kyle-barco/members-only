@@ -31,15 +31,15 @@ app.use((req, res, next) =>{
 
 require('./src/configs/passport.cjs')
 
-app.use((req, res, next) => {
-  console.log("\n--- Session Debug ---");
-  console.log("Session ID:", req.sessionID);
-  console.log("Session data:", req.session);
-  console.log("Is Authenticated:", req.isAuthenticated());
-  console.log("User:", req.user);
-  console.log("--- End Debug ---\n");
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log("\n--- Session Debug ---");
+//   console.log("Session ID:", req.sessionID);
+//   console.log("Session data:", req.session);
+//   console.log("Is Authenticated:", req.isAuthenticated());
+//   console.log("User:", req.user);
+//   console.log("--- End Debug ---\n");
+//   next();
+// });
 
 //
 // ROUTES

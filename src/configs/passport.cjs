@@ -19,13 +19,7 @@ const verifyCallback = async (username, password, done) => {
   }
 };
 
-passport.use(new LocalStrategy(
-  // {
-  //   usernameField: 'username', // explicitly set field names
-  //   passwordField: 'password'
-  // },
-  verifyCallback
-))
+passport.use(new LocalStrategy(verifyCallback))
 
 passport.serializeUser((user, done) => {
   // console.log("Serializing user ID:", user.id)
@@ -33,7 +27,7 @@ passport.serializeUser((user, done) => {
 })
 
 passport.deserializeUser(async (id, done) => {
-  console.log("Deserializing user ID:", id)
+  // console.log("Deserializing user ID:", id)
   try {
     const user = await db.getUserFromId(id)
     done(null, user)

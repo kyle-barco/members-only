@@ -21,7 +21,7 @@ const queries = {
   createUser: async (fullname, username, password) => {
     await connection.query(`
       INSERT INTO users
-        (fullname, username, password, is_member)
+        (fullname, username, password, member_status)
       VALUES
         ($1, $2, $3, 'registered');
     `, [fullname, username, password])
@@ -57,14 +57,14 @@ const queries = {
       SELECT 
         users.id,
         users.fullname,
-        users.is_member,
+        users.member_status,
         COUNT(messages.id) AS messages_count
       FROM
         users
       LEFT JOIN
         messages ON users.id = messages.id
       GROUP BY
-        user.id, users.fullname, users.username, users.is_member
+        user.id, users.fullname, users.username, users.member_status
       ORDER BY 
         users.id
     `)
