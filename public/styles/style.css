@@ -205,11 +205,11 @@ header {
     display: none;
     position: absolute;
     flex-flow: column;
-    padding: 15px 0;
+    /* padding: 15px 0; */
     background: var(--border-color);
     width: 150px;
     top: 40px;
-    right: 0;
+    right: -1.125rem;
     cursor: auto;
     list-style: none;
     border-radius: 5px;

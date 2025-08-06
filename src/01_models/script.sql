@@ -9,6 +9,7 @@ CREATE TABLE users (
   fullname VARCHAR(255) NOT NULL,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
+  member_status VARCHAR(20) NOT NULL,
   is_member VARCHAR DEFAULT 'registered'
 );
 
@@ -26,11 +27,9 @@ CREATE TABLE msg_creator (
   username_id INT REFERENCES users(id) 
 );
 
--- insert test users
-INSERT INTO users (fullname, username, password) VALUES
-  ('jazkyle', 'kyle22', '12345');
 
 -- insert test values messages
 INSERT INTO messages (title, message_text) VALUES
-  ('Test message/post', 'hello new self, you can do it, Lord God is with us now! never give up!');
+  ('Test message/post', 'hello new self, you can do it, Lord God is with us now! never give up!'),
+  ('You got this my boi', 'hello new self, you can do it, Lord God is with us now! never give up!');
 

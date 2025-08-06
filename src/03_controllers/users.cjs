@@ -7,6 +7,8 @@ const passport = require("passport")
 const userController = {
   join: async (req, res, next) => {
     try {
+      console.log("JOIN controller called")
+      console.log("req.user:", req.user)
       await db.giveUserMembership(req.user.id)
       res.redirect("/")
     } catch (err) {
