@@ -36,7 +36,7 @@ module.exports.postValidation = [
     .withMessage("Title " + emptyMsg)
     .isLength({min: 5, max: 500})
     .withMessage("Title should be between 5 - 100 characters."),
-  body("username")
+  body("message")
     .trim()
     .notEmpty()
     .withMessage("Content " + emptyMsg)

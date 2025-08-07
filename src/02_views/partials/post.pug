@@ -14,8 +14,8 @@
         p.user-fullname=fullname
         .user-date
           span=`@${username}`
-          | • 
-          span=post.created_at
+          |  • 
+          span=post.date
 
     if user && user.member_status == "admin"
       button.delete-post(

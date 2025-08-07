@@ -30,8 +30,8 @@ const postsController = {
           })
 
         } else {
-          const {title, content} = req.body;
-          await db.createPost(title, content, req.user.id)
+          const {title, message} = req.body;
+          await db.createPost(title, message, req.user.id)
           res.redirect("/")
         }
       } catch (err) {

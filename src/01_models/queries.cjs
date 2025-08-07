@@ -28,11 +28,11 @@ const queries = {
 
   },
 
-  createPost: async (title, content, id) => {
+  createPost: async (title, message_text, userId) => {
     await connection.query(`
-      INSERT INTO messages (title, content, id) 
+      INSERT INTO messages (title, message_text, user_id) 
       VALUES ($1, $2, $3)
-    `,[title, content, id])
+    `,[title, message_text, userId])
   },
 
   deletePost: async(id) => {

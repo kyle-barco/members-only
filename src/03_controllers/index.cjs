@@ -11,7 +11,7 @@ const indexController = {
         const formattedPosts = posts.map(e => {
           return {
             ...e,
-            date: moment(e.date).fromNow()
+            date: moment(e.created_at).fromNow()
           }
         })
         res.locals.posts = formattedPosts
