@@ -3,7 +3,7 @@
     false : user.member_status === "registered" ?
     false : true;
 
-  const fullname = isMember ? post.fullname : "*****"
+  const fullname = isMember ? post.full_name : "*****"
   const username = isMember ? post.username : "*****"
 
 .post
@@ -11,8 +11,8 @@
     .user-info.flex
       img(src="https://freesvg.org/img/abstract-user-flat-4.png", alt="user icon")
       div
-        p.user-fullname=fullname
-        .user-date
+        p.username-fullname=fullname
+        .username_date
           span=`@${username}`
           |  • 
           span=post.date

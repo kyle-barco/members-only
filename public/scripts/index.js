@@ -1,8 +1,8 @@
-
 const userDropdown = document.querySelector(".user-nav .drop-down")
 const userNav = document.querySelector(".user-nav")
 
 const membershipLink = document.querySelector("a.join-membership")
+const deleteBtns = document.querySelectorAll("button.delete-post")
 
 if (userDropdown && userNav) {
   document.body.addEventListener("click", (e) => {
@@ -49,3 +49,31 @@ if(membershipLink){
     }
   })
 }
+
+if (deleteBtns.length) {
+  const deletePost = (e) => {
+    const postId = e.target.getAttribute("data-post-id")
+
+    fetch(`/delete-post/${postId}`, {
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json" 
+      },
+      body: JSON.stringify({id: postId})
+    })
+    .then(res => {
+        if(res.redirected){
+          window.location.href = res.url
+        }
+      })
+    .catch(err => {
+        console.log(err)
+      })
+  }
+
+  deleteBtns.forEach(btn => {
+    btn.addEventListener("click", e => deletePost(e))
+  })
+}
+

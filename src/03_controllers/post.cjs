@@ -4,8 +4,8 @@ const db = require("../01_models/queries.cjs")
 const postsController = {
   delete: async (req, res, next) => {
     try {
-      const postId = req.params.id;  // ✅ FIXED
-      await db.deletePost(postId)
+      // const postId = req.params.id;  // ✅ FIXED
+      await db.deletePost(req.body.id)
       res.redirect("/")
     } catch (err) {
       next(err)

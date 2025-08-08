@@ -11,7 +11,7 @@ const queries = {
         m.message_text,
         m.created_at
       FROM messages AS m
-      LEFT JOIN users AS u ON u.id = m.id
+      LEFT JOIN users AS u ON u.id = m.user_id
       ORDER BY m.created_at DESC;
         
     `)
@@ -37,9 +37,8 @@ const queries = {
 
   deletePost: async(id) => {
     await connection.query(`
-      DELETE FROM messages 
-
-    `)
+      DELETE FROM messages WHERE id = $1;
+    `,[id])
   },
 
 
@@ -62,9 +61,9 @@ const queries = {
       FROM
         users
       LEFT JOIN
-        messages ON users.id = messages.id
+        messages ON users.id = messages.user_id
       GROUP BY
-        user.id, users.fullname, users.username, users.member_status
+        users.id, users.fullname, users.username, users.member_status
       ORDER BY 
         users.id
     `)
