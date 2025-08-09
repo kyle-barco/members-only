@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require('express')
 const createError = require('http-errors')
 const passport = require("passport")
@@ -53,4 +54,5 @@ app.use((req, res, next) => {
 app.use(errorHandler)
 
 // SERVER
-app.listen(3000, () => console.log("Server running at port 3000"))
+const PORT = process.env.PORT || 300
+app.listen(PORT, () => console.log(`Server running at port ${PORT}`))
