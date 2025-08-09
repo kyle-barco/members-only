@@ -14,6 +14,11 @@ block content
         p to see usernames you need to
           a.join-membership(href="#")  join our membership 
           | first
+    else if(user.member_status === "member")
+      .notif
+       p wanna be admin?
+        a.join-admin(href="#")  join admin
+        |  first
 
     .posts
       each post in posts

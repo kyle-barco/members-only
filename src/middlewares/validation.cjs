@@ -8,13 +8,13 @@ module.exports.signupValidation = [
     .trim()
     .notEmpty()
     .withMessage("Full name " + emptyMsg)
-    .isLength({min: 5, max: 50})
+    .isLength({min: 2, max: 50})
     .withMessage("Full name " + lengthMsg),
   body("username")
     .trim()
     .notEmpty()
     .withMessage("Username " + emptyMsg)
-    .isLength({min: 5, max: 50})
+    .isLength({min: 2, max: 50})
     .withMessage("Username " + lengthMsg),
   body("password")
     .trim()

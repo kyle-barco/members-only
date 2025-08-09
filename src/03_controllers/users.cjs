@@ -17,31 +17,41 @@ const userController = {
     
   },
 
+  admin: async(req, res, next) => {
+    try {
+      await db.giveUserAdmin(req.user.id)
+      res.redirect("/")
+    } catch (err) {
+      next(err)
+    }
+
+  },
+
   login: {
     get: (req, res) => {
       res.render("pages/auth", {route: "login"})
     },
-    post: (req, res, next) => {
-      passport.authenticate("local", (err, user, info) => {
-        if (err) return next(err);
-        if (!user) {
-          return res.render("pages/auth", {
-            route: "login",
-            errors: [{ msg: info?.message || "Invalid credentials" }]
-          });
-        }
-
-    // This is where the session is created properly
-    req.login(user, (err) => {
-      if (err) return next(err);
-      return res.redirect("/");
-    });
-  })(req, res, next);
-}
-    // post: passport.authenticate("local", {
-    //   successRedirect: "/",
-    //   failureRedirect: "/login"
-    // })
+//     post: (req, res, next) => {
+//       passport.authenticate("local", (err, user, info) => {
+//         if (err) return next(err);
+//         if (!user) {
+//           return res.render("pages/auth", {
+//             route: "login",
+//             errors: [{ msg: info?.message || "Invalid credentials" }]
+//           });
+//         }
+//
+//     // This is where the session is created properly
+//     req.login(user, (err) => {
+//       if (err) return next(err);
+//       return res.redirect("/");
+//     });
+//   })(req, res, next);
+// }
+    post: passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/login"
+    })
   },
 
   signup: {

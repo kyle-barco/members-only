@@ -3,6 +3,7 @@ const userNav = document.querySelector(".user-nav")
 
 const membershipLink = document.querySelector("a.join-membership")
 const deleteBtns = document.querySelectorAll("button.delete-post")
+const adminLink = document.querySelector("a.join-admin")
 
 if (userDropdown && userNav) {
   document.body.addEventListener("click", (e) => {
@@ -18,6 +19,34 @@ if (userDropdown && userNav) {
       userDropdown.classList.remove("active")
     } else {
       userDropdown.classList.add("active")
+    }
+  })
+}
+
+if(adminLink) {
+  adminLink.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    const secret = prompt(`Enter Admin Password: `)
+    
+    if(secret === "Jesus") {
+      fetch(`/admin`, {
+        method: "POST",
+        redirect: "follow",
+        headers: {
+          "Content-Type" : "application/json"
+        }
+      })
+      .then(res => {
+          if(res.redirected) {
+            window.location.href = res.url
+          }
+        })
+      .catch(err => {
+          console.log(err)
+        })
+    } else {
+      alert("Wrong password/code")
     }
   })
 }

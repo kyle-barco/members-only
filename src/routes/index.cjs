@@ -15,6 +15,7 @@ router.post("/login", user.login.post)
 router.post("/signup", signupValidation, user.signup.post)
 router.post("/new-post", postValidation, post.create.post)
 router.post("/join", isAuth, user.join)
+router.post("/admin", isAuth, user.admin)
 router.post("/delete-post/:postId", isAdmin, post.delete)
 
 

@@ -56,6 +56,7 @@ const queries = {
       SELECT 
         users.id,
         users.fullname,
+        users.username,
         users.member_status,
         COUNT(messages.id) AS messages_count
       FROM
@@ -86,6 +87,13 @@ const queries = {
     `, [id])
   },
 
+  giveUserAdmin: async(id) => {
+    await connection.query(`
+      UPDATE users
+      SET member_status = 'admin'
+      WHERE id = $1
+    `, [id])
+  }
 }
 
 module.exports = queries
