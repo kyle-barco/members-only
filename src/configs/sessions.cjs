@@ -1,3 +1,4 @@
+require("dotenv").config()
 const expressSession = require("express-session")
 const pool = require('../01_models/pool.cjs')
 const pgConnect = require("connect-pg-simple")
@@ -9,7 +10,7 @@ module.exports = () =>
     resave: false, 
     saveUninitialized: true,
     store: new PgStore({
-      pool: pool, 
+      pool: process.env.DB_URL, 
       createTableIfMissing: true,
       tableName: 'session'
     }),
