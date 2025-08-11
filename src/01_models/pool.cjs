@@ -6,3 +6,4 @@ module.exports = new pg.Pool({
   ssl: {rejectUnauthorized: false}
   // ssl: false
 })
+console.log("DB_URL:", process.env.DB_URL);
