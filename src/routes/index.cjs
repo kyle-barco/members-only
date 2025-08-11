@@ -5,11 +5,17 @@ const post = require("../03_controllers/post.cjs")
 const {signupValidation, postValidation} = require("../middlewares/validation.cjs")
 const { isAuth, isAdmin } = require("../middlewares/auth.cjs")
 //
-router.all('/{*any}', (req, res, next) => {
+
+router.all("*", (req, res, next) => {
   res.locals.user = req.user;  // Makes user available in all templates
   next();
 });
-//
+
+// router.all('/{*any}', (req, res, next) => {
+//   res.locals.user = req.user;  // Makes user available in all templates
+//   next();
+// });
+
 // POST ROUTES
 router.post("/login", user.login.post)
 router.post("/signup", signupValidation, user.signup.post)
