@@ -3,8 +3,7 @@ require("dotenv").config()
 
 module.exports = new pg.Pool({
   connectionString: process.env.DB_URL,
-  // ssl: {rejectUnauthorized: false}
-  // ssl: false
+  ssl: {rejectUnauthorized: false}
 })
 console.log("Using DB URL:", process.env.DB_URL);
-console.log("SSL Config:", { rejectUnauthorized: false });
+// console.log("SSL Config:", { rejectUnauthorized: false });
