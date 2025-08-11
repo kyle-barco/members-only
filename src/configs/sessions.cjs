@@ -6,11 +6,11 @@ const PgStore = pgConnect(expressSession)
 
 module.exports = () => 
   expressSession({
-    secret: "cats",
+    secret: process.env.SESSION_SECRET,
     resave: false, 
     saveUninitialized: true,
     store: new PgStore({
-      pool: process.env.DB_URL, 
+      pool: pool, 
       createTableIfMissing: true,
       tableName: 'session'
     }),
