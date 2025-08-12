@@ -1,12 +1,10 @@
-const pg = require("pg")
-require("dotenv").config()
+const pg = require("pg");
+require("dotenv").config();
 
 module.exports = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
- ssl: {
+  ssl: { 
     require: true,
-    rejectUnauthorized: false
+    rejectUnauthorized: false // Temporary solution
   }
-})
-// console.log("Using DB URL:", process.env.DB_URL);
-// console.log("SSL Config:", { rejectUnauthorized: false });
+});
