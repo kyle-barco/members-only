@@ -1,22 +1,20 @@
-require("dotenv").config();
-const expressSession = require("express-session");
-const pgConnect = require("connect-pg-simple");
-const PgStore = pgConnect(expressSession);
+require("dotenv").config()
+const expressSession = require("express-session")
+const pool = require('../01_models/pool.cjs')
+const pgConnect = require("connect-pg-simple")
+const PgStore = pgConnect(expressSession)
 
-module.exports = () =>
+module.exports = () => 
   expressSession({
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: false, 
     saveUninitialized: true,
     store: new PgStore({
-      conObject: {
-        connectionString: process.env.DATABASE_URL,
-        ssl: { require: true, rejectUnauthorized: false }
-      },
+      pool: pool, 
       createTableIfMissing: true,
-      tableName: "session"
+      tableName: 'session'
     }),
     cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 30 // 30 days
+      maxAge: 1000 * 60 * 60 * 24 * 30,
     }
-  });
+  })
