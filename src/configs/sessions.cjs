@@ -10,7 +10,7 @@ module.exports = () =>
     resave: false, 
     saveUninitialized: true,
     store: new PgStore({
-      pool: pool, 
+      pool, 
       createTableIfMissing: true,
       tableName: 'session'
     }),
