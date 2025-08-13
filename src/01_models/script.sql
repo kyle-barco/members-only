@@ -35,6 +35,6 @@ INSERT INTO users (fullname, username, password, member_status) VALUES
 
 -- Sample data for messages (optional)
 INSERT INTO messages (title, message_text, user_id) VALUES
-  ('Welcome Message', 'Welcome to the Members Only club!', 1),
+  ('Welcome Message', 'Welcome to the FreeBird club!', 1),
   ('Another Message', 'Keep pushing forward!', 2),
   ('Dont fall in love', 'Instead fall in love on yourself, right person will come in the right time!', 3);
