@@ -31,7 +31,6 @@ HrS5iwFTLNx9njO0rpkVoSghwcwmjHqJgNTgY1C/pw9J9OclgMOCfQuLwRVVQQLP
 module.exports = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    require: true,
     rejectUnauthorized: true,
     ca: aivenCA
   }
