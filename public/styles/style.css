@@ -320,7 +320,7 @@ main.error h3 {
     }
 
     header {
-        flex-flow: column;
+        flex-flow: row;
         gap: 15px;
     }
 }
