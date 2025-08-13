@@ -1,37 +1,13 @@
-const pg = require("pg");
-require("dotenv").config();
-
-const aivenCA = `-----BEGIN CERTIFICATE-----
-MIIEUDCCArigAwIBAgIUSGAu+sdK0w/bHJwP1NPRgQAtx14wDQYJKoZIhvcNAQEM
-BQAwQDE+MDwGA1UEAww1MTY0ZTUyMGQtNGZiYy00ZTQwLWFmZjYtMThiOWJlYmRk
-ODAyIEdFTiAxIFByb2plY3QgQ0EwHhcNMjUwODA5MDMxMjE0WhcNMzUwODA3MDMx
-MjE0WjBAMT4wPAYDVQQDDDUxNjRlNTIwZC00ZmJjLTRlNDAtYWZmNi0xOGI5YmVi
-ZGQ4MDIgR0VOIDEgUHJvamVjdCBDQTCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCC
-AYoCggGBAOl5sFXvB4mNatetA05GWHB3BVndjth5qhJ52HacSvauBQUKXdABoSjh
-wyELvfVQXFTiFnlYwpaYMh0ZCoLEujKmNM6zYGGROpki1n+BD6U6Z86EcZ0/8laU
-b3cdisDswI1fBPQn7fVPCtHCsMluTIBcqdAqS7WjXjB1bfqlFdMO7W2BtiLIgKYS
-/yZzW+QVJ2LdiRdt2UaF/MUK7XnjAgw0E9LfwcbXWW54BLcEMGQ0E1RqKELd/OS5
-bDlJYJu0cZVcT2vSRI+WyK6Y6Vds97kR7ftmKI8WB+DcHlJnMeuJW3YZc3d/WQmv
-ndGIz0lyyJN+mCweGBdEvNhLVGYped+o6CoAD4THYL8SznhlLJBKa//jHM1cWtG9
-m3/fVxABuYLJtv2tkXAyVmSFQDhJRQHvOWd2qRbl4Xru4TrszRGlRjtdpsG+UQym
-CICq+672QM/PAERA6pyhOIHX+sZXTB+wEckuEE8dE3uxp6ONscDMoPgMXVzL6+Ku
-V6Fqc8r3IwIDAQABo0IwQDAdBgNVHQ4EFgQUNY4NFGFaKt/KaQdKUP04A+NCYggw
-EgYDVR0TAQH/BAgwBgEB/wIBADALBgNVHQ8EBAMCAQYwDQYJKoZIhvcNAQEMBQAD
-ggGBAHrFZ80saHHsGh5yguDZmSfp7fgUw0KeuBMGGvv+hU6+7CtLiEpQ+I/Y4TvE
-x1DcT3AWs8E3McE9jB+J6h7+/gl+chzhbwpcIQPNp0z7jGIrDC1nXRwM+xXsBeCX
-/1wZr2is4WqhI2gMINV7/BT+9DpzsOnOKB4biJawbSfwtwYLk4uQzIXjaeKNrjO7
-Tq5NnVIzVp7p3o5sq5/3Z8vnTcApCV5ueX+FXJqi6b0U+/3ftwA3tS5vJs9R5g0I
-b8aH70LZBfCFcImhcm9nfVzE0sR9dDrmRs+IfN1FF4G4ZOigFZegz79QaJEqKyjP
-W/maTQG4m0yHKl+TE/jEH4ihh5Np+zxnWA7DZVugGUrwE9cHgYHpTFGkMpOEDeFv
-u9QpBakEgiwDut+RGtkRw4G9kYLdUwpycyk4Xck+/57N9ShigQS2XHhsXTZksTzd
-HrS5iwFTLNx9njO0rpkVoSghwcwmjHqJgNTgY1C/pw9J9OclgMOCfQuLwRVVQQLP
-5Sk7Yw==
------END CERTIFICATE-----`;
+const pg = require("pg")
+const fs = require("fs")
+require("dotenv").config()
 
 module.exports = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
-    rejectUnauthorized: true,
-    ca: aivenCA
+    ca: fs.readFileSync('../../ca.pem').toString()
+    // rejectUnauthorized: false
   }
-});
+})
+// console.log("Using DB URL:", process.env.DB_URL);
+// console.log("SSL Config:", { rejectUnauthorized: false });
